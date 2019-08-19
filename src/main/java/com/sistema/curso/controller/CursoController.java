@@ -69,7 +69,11 @@ public class CursoController {
 			Date date = Date.from(hoje.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			curso.setDataAlteracao(date);
 			curso.setDataInclusao(date);
+			try {
 			cursoRepository.save(curso);
+			} catch(Exception e) {
+				return "error-500";
+			}
 			List<Curso> cursos = cursoRepository.findAllByOrderByNomeAsc();
 			if (!cursos.isEmpty()) {
 				model.addAttribute("cursos", cursos);
@@ -93,7 +97,11 @@ public class CursoController {
 			curso.setDataAlteracao(date);
 			curso.setNome(cursoDetails.getNome());
 			curso.setDescricao(cursoDetails.getDescricao());
+			try {
 			cursoRepository.save(curso);
+			} catch(Exception e) {
+				return "error-500";
+			}
 			List<Curso> cursos = cursoRepository.findAllByOrderByNomeAsc();
 			if (!cursos.isEmpty()) {
 				model.addAttribute("cursos", cursos);

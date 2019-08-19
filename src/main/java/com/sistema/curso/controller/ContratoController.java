@@ -90,10 +90,14 @@ public class ContratoController {
 					return "CadastrarContrato";
 				}
 			}
+			try {
 			contratoRepository.save(contrato);
 			
 			aluno.get().getContratos().add(contrato);
 			alunoRepository.save(aluno.get());
+			} catch(Exception e) {
+				return "error-500";
+			}
 			List<Aluno> alunos = alunoRepository.findAllByOrderByNomeAsc();
 			if (!alunos.isEmpty()) {
 				model.addAttribute("alunos", alunos);

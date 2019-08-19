@@ -66,7 +66,11 @@ public class AlunoController {
 				return "IncluirAlterarAluno";
 			}
 			aluno.setContratos(new ArrayList<Contrato>());
+			try {
 			alunoRepository.save(aluno);
+			} catch(Exception e) {
+				return "error-500";
+			}
 			List<Aluno> alunos = alunoRepository.findAllByOrderByNomeAsc();
 			if (!alunos.isEmpty()) {
 				model.addAttribute("alunos", alunos);
@@ -107,7 +111,11 @@ public class AlunoController {
 			aluno.setEmail(alunoDetails.getEmail());
 			aluno.setNome(alunoDetails.getNome());
 			aluno.setTelefone(alunoDetails.getTelefone());
+			try {
 			alunoRepository.save(aluno);
+			} catch(Exception e) {
+				return "error-500";
+			}
 			List<Aluno> alunos = alunoRepository.findAllByOrderByNomeAsc();
 			if (!alunos.isEmpty()) {
 				model.addAttribute("alunos", alunos);
@@ -120,7 +128,11 @@ public class AlunoController {
 	@RequestMapping(value = "/alunoExcluir", method = RequestMethod.GET)
 	public String deleteAluno(@RequestParam(value = "id") Long alunoId, Model model) throws ResourceNotFoundException {
 		Optional<Aluno> aluno = alunoRepository.findById(alunoId);
+		try {
 		alunoRepository.delete(aluno.get());
+		} catch(Exception e) {
+			return "error-500";
+		}
 		List<Aluno> alunos = alunoRepository.findAllByOrderByNomeAsc();
 		if (!alunos.isEmpty()) {
 			model.addAttribute("alunos", alunos);
