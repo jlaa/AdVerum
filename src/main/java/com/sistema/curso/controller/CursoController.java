@@ -85,7 +85,7 @@ public class CursoController {
 
 	@PostMapping(value = "/cursoAlterar")
 	public String alterarCurso(@RequestParam(value = "id") Long cursoId,
-			@Valid @ModelAttribute("curso") Curso cursoDetails, BindingResult bindingResult, Model model)
+			@ModelAttribute("curso") @Valid  Curso cursoDetails, BindingResult bindingResult, Model model)
 			throws ResourceNotFoundException {
 		if (bindingResult.hasErrors()) {
 			return "IncluirAlterarAluno";
