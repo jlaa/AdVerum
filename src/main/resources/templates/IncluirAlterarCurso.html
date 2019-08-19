@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>AdVerum | Cursos Online</title>
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet}" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/adverum.css}" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+</head>
+<body>
+ <div th:replace="index :: header">        
+ </div>
+ <form th:if="${curso.codObjeto!=0}" id="incluir" style="width:20%;margin-left:2%;margin-top:1%" action="#" th:action="@{/curso/cursoAlterar(id=${curso.codObjeto})}" th:object="${curso}" method="POST">
+  <div class="form-group">
+    <label style="font-weight:bold" for="nomeInput">Nome do Curso</label>
+    <input type="text" class="form-control" id="nomeInput" th:field="*{nome}" placeholder="Coloque aqui o nome completo">
+    <span class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+  </div>  
+   <div class="form-group">
+    <label style="font-weight:bold" for="descricao">Descrição do curso</label>
+    <textarea name="descricao" id="descricao" class="form-control" rows="4" cols="20" form="incluir" th:field="*{descricao}"></textarea> 
+     <span class="error" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>       
+ </div>  
+ <button type="submit" class="btn btn-primary">Alterar</button>
+ <a class="btn btn-primary" th:href="@{/curso/cursos}" role="button">Voltar</a>
+</form>
+ 
+
+<form th:if="${curso.codObjeto==0}" id="incluir" style="width:20%;margin-left:2%" action="#" th:action="@{/curso/novoCurso}" th:object="${curso}" method="POST">
+  <div class="form-group">
+    <label style="font-weight:bold" for="nomeInput">Nome do Curso</label>
+    <input type="text" class="form-control" id="nomeInput" th:field="*{nome}" placeholder="Coloque aqui o nome completo">
+    <span class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+  </div>  
+   <div class="form-group">
+    <label style="font-weight:bold" for="descricao">Descrição do curso</label>
+    <textarea name="descricao" id="descricao" class="form-control" rows="4" cols="20" form="incluir" th:field="*{descricao}"></textarea> 
+     <span class="error" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>       
+ </div>  
+   <button type="submit" class="btn btn-primary">Adicionar</button>
+   <a class="btn btn-primary" th:href="@{/curso/cursos}" role="button">Voltar</a>
+</form>
+
+  <div th:replace="index :: footer">
+  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script type="text/javascript" th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script type="text/javascript" th:src="@{/js/adverum.js}"></script>
+  <script type="text/javascript"  th:src="@{/vendor/jquery/jquery.mask.min.js}"></script>
+</body>
+</html>

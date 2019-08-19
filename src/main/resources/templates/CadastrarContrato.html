@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>AdVerum | Cursos Online</title>
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet}" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/adverum.css}" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+</head>
+<body>
+ <div th:replace="index :: header">        
+ </div>
+ <h5 style="margin-left:2%" class="error" th:if="${falha!=null}" th:text="${falha}"></h5> 
+ <form id="incluir" style="width:20%;margin-left:2%;margin-top:1%" action="#" th:action="@{/contrato/novoContrato/(id=${alunoId})}" th:object="${contrato}" method="POST">
+    <div class="form-group">
+    <label style="font-weight:bold" for="nomeInput">Código de Compra</label>
+    <input type="text" class="form-control" id="nomeInput" th:field="*{codigoCompra}" placeholder="Codigo de desconto">
+  </div> 
+  <div class="form-group">
+    <label style="font-weight:bold" for="nomeInput">Escolha aqui o curso</label>
+    <select class="form-control custom-select" form="incluir"  th:field="*{curso}">
+	    <option th:each="curso : ${cursos}" th:value="${curso.codObjeto}" th:text="${curso.nome}">
+	    </option>
+	</select>
+	<span class="error" th:if="${#fields.hasErrors('curso')}" th:errors="*{curso}"></span>
+  </div>  
+ <button type="submit" class="btn btn-primary">Adicionar</button>
+ <a class="btn btn-primary" th:href="@{/aluno/alunos}" role="button">Voltar</a>
+</form>
+
+  <div th:replace="index :: footer">
+  </div>
+   <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script type="text/javascript" th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script type="text/javascript" th:src="@{/js/adverum.js}"></script>
+  <script type="text/javascript" th:src="@{/vendor/jquery/jquery.mask.min.js}"></script>
+  
+</body>
+</html>
