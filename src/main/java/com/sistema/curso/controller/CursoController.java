@@ -63,7 +63,7 @@ public class CursoController {
 	@PostMapping("/novoCurso")
 	public String criarCurso(@Valid @ModelAttribute Curso curso, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "IncluirAlterarAluno";
+			return "IncluirAlterarCurso";
 		} else {
 			LocalDate hoje = LocalDate.now();
 			Date date = Date.from(hoje.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -88,7 +88,7 @@ public class CursoController {
 			@ModelAttribute("curso") @Valid  Curso cursoDetails, BindingResult bindingResult, Model model)
 			throws ResourceNotFoundException {
 		if (bindingResult.hasErrors()) {
-			return "IncluirAlterarAluno";
+			return "IncluirAlterarCurso";
 		} else {
 			Curso curso = cursoRepository.findById(cursoId)
 					.orElseThrow(() -> new ResourceNotFoundException("Curso não encontrado com o id :: " + cursoId));
