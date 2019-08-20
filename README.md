@@ -1,1 +1,2 @@
-Para acessar a aplicação é só clicar neste link: https://adverum.herokuapp.com/
+O sistema está hospedado em: https://adverum.herokuapp.com/ só clicar e acessar.
+
